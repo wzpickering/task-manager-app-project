@@ -4,11 +4,12 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 app.use(cors());
-app.use(epress.json());
+app.use(express.json());
 
 //mongoose stuff
 mongoose.connect(
-  "mongodb+srv://wzpickering:Jp101262???@cluster0.zktjk.mongodb.net/taskmanagerDB",
+  "mongodb+srv://wzpickering:Jp101262???@cluster0.zktjk.mongodb.net/taskmanagerDB?retryWrites=true&w=majority"
+  ,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
