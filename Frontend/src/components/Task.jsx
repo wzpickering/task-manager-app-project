@@ -6,13 +6,7 @@ function Task(props) {
         title: ""
     });
 
-    useEffect(()=>{
-        fetch("/").then(res=>{
-          if (res.ok) {
-            return res.json()
-          }
-        }).then(jsonRes => setTask(jsonRes));
-      })
+ 
     
     
     return (

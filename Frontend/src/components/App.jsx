@@ -7,6 +7,14 @@ import Task from "./Task";
 function App() {
   const [tasks, setTasks] = useState([]);
 
+  useEffect(()=>{
+    fetch("/").then(res=>{
+      if (res.ok) {
+        return res.json()
+      }
+    }).then(jsonRes => setTasks(jsonRes));
+  })
+
  
   function addTask(inputTask) {
     setTasks((prevTasks) => [...prevTasks, inputTask]);
