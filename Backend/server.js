@@ -8,7 +8,7 @@ app.use(express.json());
 
 //mongoose stuff
 mongoose.connect(
-  "mongodb+srv://wzpickering:Jp101262???@cluster0.zktjk.mongodb.net/taskmanagerDB?retryWrites=true&w=majority"
+  "mongodb+srv://wzpickering:Jp101262%3F%3F%3F@cluster0.zktjk.mongodb.net/taskmanagerDB?retryWrites=true&w=majority"
   ,
   {
     useNewUrlParser: true,
