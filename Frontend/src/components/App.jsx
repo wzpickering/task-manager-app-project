@@ -15,10 +15,11 @@ function App() {
     }).then(jsonRes => setTasks(jsonRes));
   })
 
+
  
-  function addTask(inputTask) {
-    setTasks((prevTasks) => [...prevTasks, inputTask]);
-  }
+  // function addTask(inputTask) {
+  //   setTasks((prevTasks) => [...prevTasks, inputTask]);
+  // }
 
   function deleteTask(id){
       setTasks((prevTasks)=>{
@@ -35,11 +36,11 @@ function App() {
         <div>
           <h1>Daily Tasks</h1>
         </div>
-        <InputTask onAdd={addTask} />
+        <InputTask/>
         <div>
           <ul>
             {tasks.map((task, index) => {
-              return <Task key={index} id={index} text={task} onDelete={deleteTask}/>; //
+              return <Task key={index} id={index} text={task.title} onDelete={deleteTask}/>; //
             })}
           </ul>
         </div>

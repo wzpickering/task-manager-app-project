@@ -1,16 +1,16 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 
 function Task(props) {
 
-    const [task, setTask] = useState({
-        title: ""
-    });
+    // const [task, setTask] = useState({
+    //     title: ""
+    // });
 
  
     
     
     return (
-        <li onClick={()=>{props.onDelete(props.id)}}>{task.title}</li> //props.text
+        <li onClick={()=>{props.onDelete(props.id)}}>{props.text}</li> //props.text
     )
 }
 

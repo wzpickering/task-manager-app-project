@@ -9,12 +9,13 @@ function InputTask(props) {
   }
 
   function handleClick(e){
-    // e.preventDefault();
+    e.preventDefault();
+    // props.onAdd(input);
     const newTask = {
       title: input
   }
   axios.post("http://localhost:3001", newTask); 
-    props.onAdd(input);
+    
   setInput("");
   }
 
