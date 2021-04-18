@@ -8,7 +8,8 @@ router.route("/").post((req, res)=>{
         title
     });
     newTask.save();
-}).get((req,res)=>{
+})
+router.route("/").get((req,res)=>{
     Task.find()
         .then(foundTasks => res.json(foundTasks))
 })
