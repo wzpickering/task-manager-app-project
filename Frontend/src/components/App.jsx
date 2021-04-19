@@ -7,14 +7,7 @@ import Task from "./Task";
 function App() {
   const [tasks, setTasks] = useState([]);
 
-  useEffect(()=>{
-    fetch("/").then(res=>{
-      if (res.ok) {
-        return res.json()
-      }
-    }).then(jsonRes => setTasks(jsonRes));
-  })
-
+ 
 
  
   // function addTask(inputTask) {
@@ -38,11 +31,7 @@ function App() {
         </div>
         <InputTask/>
         <div>
-          <ul>
-            {tasks.map((task, index) => {
-              return <Task key={index} id={index} text={task.title} onDelete={deleteTask}/>; //
-            })}
-          </ul>
+            <Task />
         </div>
       </div>
       <Footer />
@@ -51,3 +40,7 @@ function App() {
 }
 
 export default App;
+
+// {tasks.map((task, index) => {
+//   return <Task key={index} id={index} text={task.title} onDelete={deleteTask}/>; //
+// })}

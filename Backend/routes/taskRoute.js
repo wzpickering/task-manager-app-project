@@ -11,7 +11,9 @@ router.route("/").post((req, res)=>{
 })
 router.route("/").get((req,res)=>{
     Task.find()
-        .then(foundTasks => res.json(foundTasks))
+        .then(foundTasks =>{res.json(foundTasks)
+        })；
+    
 })
 
 module.exports = router;
