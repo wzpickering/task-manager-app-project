@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
+import {TaskContext} from "./Context"
 
 function Task(props) {
-  const [tasks, setTasks] = useState([
-    {
-      title: "",
-    },
-  ]);
+  const {setTask, task, handleDelete} = React.useContext(TaskContext);
 
   useEffect(() => {
-    fetch("/")
+    fetch("http://localhost:3001")
       .then((res) => {
         if (res.ok) {
           return res.json();
         }
       })
-      .then((jsonRes) => setTasks(jsonRes));
-  });
+      .then((jsonRes) => setTask(jsonRes));
+  },[task, setTask]);
 
 
  
@@ -23,9 +20,8 @@ function Task(props) {
 
   return (
     <ul>
-      {tasks.map((task, index) => {
-        console.log(task)
-        return <li key={index}>{task.title}</li>;
+      {task.map((task, index) => {
+        return <li key={index}><h3>{task.title}</h3><button onClick={()=> handleDelete(task._id)}>Delete</button></li>;
       })}
     </ul> //props.text
   );

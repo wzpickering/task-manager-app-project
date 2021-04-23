@@ -1,3 +1,4 @@
+const { response } = require("express");
 const express = require("express");
 const router = express.Router();
 const Task = require("../models/taskModel");
@@ -11,8 +12,14 @@ router.route("/").post((req, res)=>{
 })
 router.route("/").get((req,res)=>{
     Task.find()
-        .then(foundTasks =>{res.json(foundTasks)
-        })；
+        .then(foundTasks =>{
+            res.json(foundTasks)
+        })
+    
+})
+router.route("/delete").delete((req,res)=>{
+    console.log(req.body.id, "here");
+    Task.deleteOne({_id: req.body.id}).then(response =>{console.log(response)})
     
 })
 

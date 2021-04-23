@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios"; 
+import {TaskContext} from "./Context"
 
 function InputTask(props) {
-  const [input, setInput] = useState("");
+const {setTask, task} = React.useContext(TaskContext);
+const [input, setInput] = useState("");
 
   function handleChange(e) {
     setInput(e.target.value);
@@ -15,7 +17,7 @@ function InputTask(props) {
       title: input
   }
   axios.post("http://localhost:3001", newTask); 
-    
+  setTask([newTask, ...task]);
   setInput("");
   }
 
