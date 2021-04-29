@@ -9,6 +9,10 @@ import Modal from "./Modal";
 function App() {
   const [isOpen, toggleOpen] = useState(false);
 
+  const GRID = {
+    display: "grid",
+  };
+
   const BUTTON_WRAPPER_STYLES = {
     position: "relative",
     zIndex: 1,
@@ -18,19 +22,31 @@ function App() {
     <ContextProvider>
       <div>
         <Header />
-        <div style={BUTTON_WRAPPER_STYLES} onClick={()=>console.log("clicked")}> 
-        {/* dispite Modal being rendered seperately, it can pass function up to parent */}
-          <button onClick={() => toggleOpen(true)}>Add Project</button>
-          <Modal open={isOpen} onClose={() => toggleOpen(false)}></Modal>
-        </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6">
+              <div
+                style={BUTTON_WRAPPER_STYLES}
+                onClick={() => console.log("clicked")}
+              >
+                {/* dispite Modal being rendered seperately, it can pass function up to parent */}
+                <button className="projectButton" onClick={() => toggleOpen(true)}>Add Project</button>
+                <Modal open={isOpen} onClose={() => toggleOpen(false)}></Modal>
+              </div>
 
-        <div className="task-form">
-          <div>
-            <h1>Daily Tasks</h1>
-          </div>
-          <InputTask />
-          <div>
-            <Task />
+              <div className="task-form">
+                <div>
+                  <h1>Daily Tasks</h1>
+                </div>
+                <InputTask />
+                <div>
+                  <Task />
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <h2>there</h2>
+            </div>
           </div>
         </div>
         <Footer />

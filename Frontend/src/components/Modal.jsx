@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDom from "react-dom";
+import axios from "axios";
+import TaskContext from "./Context";
 
 const MODAL_STYLES = {
   position: "fixed",
@@ -22,6 +24,32 @@ const OVERLAY_STYLES = {
 };
 
 export default function Modal({ open, children, onClose }) {
+    const {project, setProject} = React.createContext(TaskContext);
+  const [projectInput, setProjectInput] = useState({
+    title: "",
+    content: ""
+  });
+
+  function handleSubmit(e){
+      e.preventDefault();
+      const newProject = {
+          title: projectInput.title,
+          content: projectInput.content
+      }
+      axios.post("http://localhost:3001", newProject);
+      setProject(newProject, ...project);
+  }
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setProjectInput(prevVal => {
+      return {
+        ...prevVal, 
+        [name]: value
+      };
+    });
+  }
+
   if (!open) {
     return null;
   }
@@ -30,10 +58,28 @@ export default function Modal({ open, children, onClose }) {
     <>
       <div style={OVERLAY_STYLES} />
       <div style={MODAL_STYLES}>
-        <button onClick={onClose}></button>
-        {children}
+        <form onSubmit={handleSubmit}>
+          <input
+            name="projectTitle"gh
+            onChange={handleChange}
+            value={projectInput.title}
+            placeholder="Title"
+          />
+          <textarea
+            name="projectContent"
+            onChange={handleChange}
+            value={projectInput.content}
+            placeHolder="Content"
+          />
+          <button className="btn btn-primary" onClick={onClose}>
+            Add
+          </button>
+          <button>Cancel</button>
+          {children}
+        </form>
       </div>
     </>,
     document.getElementById("portal")
   );
 }
+

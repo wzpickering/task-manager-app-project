@@ -3,11 +3,17 @@ import React from "react";
 
 export const TaskContext = React.createContext();
 
-const TaskProvider = (props)=>{
+const ContextProvider = (props)=>{
     const [task, setTask] = React.useState([ 
         {
         title: "",
       },]);
+
+    const [project, setProject] = React.useState([
+        {title: "",
+        content: ""
+    },])
+
       const handleDelete = (id)=>{
           const newArray = [];
           task.forEach((ele)=>{
@@ -22,9 +28,9 @@ const TaskProvider = (props)=>{
           setTask(newArray);
       }
     return (
-        <TaskContext.Provider value={{task, setTask, handleDelete}}>
+        <TaskContext.Provider value={{task, setTask, handleDelete, project, setProject}}>
         {props.children}
         </TaskContext.Provider>
     )
 }
-export default TaskProvider;
+export default ContextProvider;

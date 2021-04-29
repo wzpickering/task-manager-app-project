@@ -7,6 +7,7 @@
 }
 body {
   background-color: #eaeaea;
+  height: 100%;
 }
 
 /* Header */
@@ -27,11 +28,14 @@ header h1 {
   font-family: "Catamaran", sans-serif;
   font-size: 3rem;
 }
+/* Grid */
+
+
 /* Task Form */
 .task-form {
     border: solid #08d9d6;
     text-align: center;
-    width: 30%;
+    width: 60%;
     border-radius: 20px;
     margin: auto;
 }
@@ -46,6 +50,9 @@ li {
     text-align: left;
     word-wrap: break-word;
     font-family: "Biryani", sans-serif ;
+}
+h3 {
+  font-size: 1rem;
 }
 
 
