@@ -17,7 +17,8 @@ const [input, setInput] = useState("");
       title: input
   }
   axios.post("http://localhost:3001", newTask); 
-  setTask([newTask, ...task]);
+  // setTask([newTask, ...task]);
+  console.log(task);
   setInput("");
   }
 

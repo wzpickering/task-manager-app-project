@@ -17,8 +17,8 @@ mongoose.connect(
   }
 );
 
-app.use("/", require("./routes/taskRoute","./routes/projectRoute"));
-// app.use("/", require("./routes/projectRoute")); //we'll see if we need this
+app.use("/", require("./routes/taskRoute"));
+app.use("/project", require("./routes/projectRoute")); //we'll see if we need this
 
 app.listen(3001, () => {
   console.log("successfully connected to port 3001");

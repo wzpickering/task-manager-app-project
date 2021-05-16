@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDom from "react-dom";
 import axios from "axios";
-import TaskContext from "./Context";
+import {TaskContext} from "./Context";
 
 const MODAL_STYLES = {
   position: "fixed",
@@ -24,31 +24,39 @@ const OVERLAY_STYLES = {
 };
 
 export default function Modal({ open, children, onClose }) {
-    const {project, setProject} = React.createContext(TaskContext);
-  const [projectInput, setProjectInput] = useState({
-    title: "",
-    content: ""
-  });
+  const { project, setProject } = React.useContext(TaskContext);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
-  function handleSubmit(e){
-      e.preventDefault();
-      const newProject = {
-          title: projectInput.title,
-          content: projectInput.content
+  useEffect(()=>{
+    // console.log(title, content);
+  },[title, content]); //runs the useEffect code whenever these args are changed
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const newProject = { //shorthand for creating objects
+      title,
+      content
+    };
+    await axios.post("http://localhost:3001/project", JSON.stringify(newProject), {
+      headers: {
+        "Content-Type": "application/json"
       }
-      axios.post("http://localhost:3001", newProject);
-      setProject(newProject, ...project);
+    });//converts object to json
+    setProject([newProject, ...project]);
+    console.log(project);
+    onClose(false);
   }
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setProjectInput(prevVal => {
-      return {
-        ...prevVal, 
-        [name]: value
-      };
-    });
-  }
+  // function handleChange(e) {
+  //   const { name, value } = e.target;
+  //   setProjectInput((prevVal) => {
+  //     return {
+  //       ...prevVal,
+  //       [name]: value,
+  //     };
+  //   });
+  // }
 
   if (!open) {
     return null;
@@ -60,21 +68,21 @@ export default function Modal({ open, children, onClose }) {
       <div style={MODAL_STYLES}>
         <form onSubmit={handleSubmit}>
           <input
-            name="projectTitle"gh
-            onChange={handleChange}
-            value={projectInput.title}
+            name="projectTitle"
+            onChange={(e)=> setTitle(e.target.value)}
+            value={title}
             placeholder="Title"
           />
           <textarea
             name="projectContent"
-            onChange={handleChange}
-            value={projectInput.content}
+            onChange={(e)=> setContent(e.target.value)}
+            value={content}
             placeHolder="Content"
           />
-          <button className="btn btn-primary" onClick={onClose}>
+          <button type="submit" className="btn btn-primary" >
             Add
           </button>
-          <button>Cancel</button>
+          <button onClick={()=> onClose(false)}>Cancel</button>
           {children}
         </form>
       </div>
@@ -82,4 +90,3 @@ export default function Modal({ open, children, onClose }) {
     document.getElementById("portal")
   );
 }
-

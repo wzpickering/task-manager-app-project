@@ -5,6 +5,7 @@ import InputTask from "./InputTask";
 import Task from "./Task";
 import ContextProvider from "./Context";
 import Modal from "./Modal";
+import Project from "./Project";
 
 function App() {
   const [isOpen, toggleOpen] = useState(false);
@@ -31,7 +32,7 @@ function App() {
               >
                 {/* dispite Modal being rendered seperately, it can pass function up to parent */}
                 <button className="projectButton" onClick={() => toggleOpen(true)}>Add Project</button>
-                <Modal open={isOpen} onClose={() => toggleOpen(false)}></Modal>
+                <Modal open={isOpen} onClose={toggleOpen}></Modal>
               </div>
 
               <div className="task-form">
@@ -45,7 +46,7 @@ function App() {
               </div>
             </div>
             <div className="col-md-6">
-              <h2>there</h2>
+              <Project />
             </div>
           </div>
         </div>
