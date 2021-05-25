@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { TaskContext } from "./Context";
 
 function Project(props) {
-  const { setProject, project } = React.useContext(TaskContext);
+  const { setProject, project, deleteProject } = React.useContext(TaskContext);
 
   useEffect(() => {
     fetch("http://localhost:3001/project")
@@ -19,12 +19,13 @@ function Project(props) {
   }
   return (
     <div>
-      {project.map((projects) => {
+      {project.map((projects, index) => {
         return (
-          <div>
+          <div className="project" key={index}>
             <h1>{projects.title}</h1>
             <p>{projects.content}</p>
-            <button></button>
+            <button onClick={()=>{deleteProject(project[index]._id);
+            console.log(project[index]._id)}}>Delete</button>
           </div>
         );
       })}

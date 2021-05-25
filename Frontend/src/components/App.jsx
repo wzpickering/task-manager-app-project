@@ -21,9 +21,9 @@ function App() {
 
   return (
     <ContextProvider>
-      <div>
+      <div id="wrapper">
         <Header />
-        <div className="container">
+        <div className="container main-content">
           <div className="row">
             <div className="col-md-6">
               <div

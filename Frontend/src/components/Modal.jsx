@@ -28,11 +28,7 @@ export default function Modal({ open, children, onClose }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  useEffect(()=>{
-    // console.log(title, content);
-  },[title, content]); //runs the useEffect code whenever these args are changed
-
-  async function handleSubmit(e) {
+  async function handleSubmit(e) { //usually everything renders in order, await prevents things behind from rending until axios fetches data
     e.preventDefault();
     const newProject = { //shorthand for creating objects
       title,
@@ -77,7 +73,7 @@ export default function Modal({ open, children, onClose }) {
             name="projectContent"
             onChange={(e)=> setContent(e.target.value)}
             value={content}
-            placeHolder="Content"
+            placeholder="Content"
           />
           <button type="submit" className="btn btn-primary" >
             Add

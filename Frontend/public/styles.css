@@ -1,13 +1,20 @@
 /* Body */
 
-* {
+/* * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
+} */
 body {
   background-color: #eaeaea;
-  height: 100%;
+  padding-bottom: 60px;
+  padding: 0;
+  margin: 0;
+}
+
+#wrapper {
+  min-height: 100%;
+  position: relative;
 }
 
 /* Header */
@@ -28,46 +35,51 @@ header h1 {
   font-family: "Catamaran", sans-serif;
   font-size: 3rem;
 }
-/* Grid */
-
+/* Main Container */
+.main-content {
+  padding: 10px;
+  padding-bottom: 60px;
+}
 
 /* Task Form */
 .task-form {
-    border: solid #08d9d6;
-    text-align: center;
-    width: 60%;
-    border-radius: 20px;
-    margin: auto;
+  border: solid #08d9d6;
+  text-align: center;
+  width: 60%;
+  border-radius: 20px;
+  margin: auto;
 }
-.task-form input{
-    margin-bottom: 20px;
+.task-form input {
+  margin-bottom: 20px;
 }
 
 li {
-    position: relative;
-    left: 40px;
-    width: 85%;
-    text-align: left;
-    word-wrap: break-word;
-    font-family: "Biryani", sans-serif ;
+  position: relative;
+  left: 40px;
+  width: 85%;
+  text-align: left;
+  word-wrap: break-word;
+  font-family: "Biryani", sans-serif;
 }
 h3 {
   font-size: 1rem;
 }
 
-
-
-
+/* Project */
+.project {
+  border: solid purple;
+}
 
 /* Footer */
 
 footer {
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    background-color: #252a34;
-    width: 100%;
-    color: azure;
-    font-family: "Biryani", sans-serif;
-    font-size: .8rem;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  background-color: #252a34;
+  width: 100%;
+  color: azure;
+  font-family: "Biryani", sans-serif;
+  font-size: 0.8rem;
+  height: 40px;
 }

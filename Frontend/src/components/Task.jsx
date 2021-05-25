@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {TaskContext} from "./Context"
+import { TaskContext } from "./Context";
 
 function Task(props) {
-  const {setTask, task, handleDelete} = React.useContext(TaskContext);
+  const { setTask, task, handleDelete } = React.useContext(TaskContext);
 
   useEffect(() => {
     fetch("http://localhost:3001")
@@ -12,16 +12,19 @@ function Task(props) {
         }
       })
       .then((jsonRes) => setTask(jsonRes));
-  },[task, setTask]);
+  }, [task, setTask]);
 
-
- 
   //onClick={()=>{props.onDelete(props.id)}}
 
   return (
     <ul>
       {task.map((task, index) => {
-        return <li key={index}><h3>{task.title}</h3><button onClick={()=> handleDelete(task._id)}>Delete</button></li>;
+        return (
+          <li key={index}>
+            <h3>{task.title}</h3>
+            <button onClick={() => handleDelete(task._id)}>Delete</button>
+          </li>
+        );
       })}
     </ul> //props.text
   );
