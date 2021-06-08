@@ -159,7 +159,7 @@ margin: auto;
 /* Footer */
 
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   text-align: center;
   background-color: #252a34;

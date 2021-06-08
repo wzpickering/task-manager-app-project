@@ -92,9 +92,9 @@ function App() {
             </div>
           </div>
         </div>
-        {/* <Footer /> to push things down */}
+        <Footer />
       </div>
-      <Footer />
+      
     </ContextProvider>
   );
 }
