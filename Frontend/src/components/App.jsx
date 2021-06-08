@@ -3,15 +3,34 @@ import Header from "./Header";
 import Footer from "./Footer";
 import InputTask from "./InputTask";
 import Task from "./Task";
-import ContextProvider from "./Context";
+import ContextProvider, { TaskContext } from "./Context";
 import Modal from "./Modal";
 import Project from "./Project";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
 
 function App() {
+  const { setProject, project } = React.useContext(TaskContext);
   const [isOpen, toggleOpen] = useState(false);
 
-  const GRID = {
-    display: "grid",
+  useEffect(() => {
+    fetch("http://localhost:3001/project")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((jsonRes) => setProject(jsonRes));
+  }, [project, setProject]);
+
+  // if (!project){
+  //     return null;
+  // }
+
+  // console.log(project.length)
+
+  const displayStyle = {
+    display: "none",
   };
 
   const BUTTON_WRAPPER_STYLES = {
@@ -23,15 +42,28 @@ function App() {
     <ContextProvider>
       <div id="wrapper">
         <Header />
+        <div
+          className="project-button-div"
+          style={{ display: project.length > 0 && "none" }}
+        >
+          <Fab
+            variant="extended"
+            color="primary"
+            className="project-button"
+            onClick={() => toggleOpen(true)}
+          >
+            Add Project
+          </Fab>
+        </div>
         <div className="container main-content">
-          <div className="row">
-            <div className="col-md-6">
+          <div className={project.length !== 0?"row": null}>
+            <div className={project.length !== 0 ?"col-md-6": null}>
               <div
                 style={BUTTON_WRAPPER_STYLES}
                 onClick={() => console.log("clicked")}
               >
                 {/* dispite Modal being rendered seperately, it can pass function up to parent */}
-                <button className="projectButton" onClick={() => toggleOpen(true)}>Add Project</button>
+
                 <Modal open={isOpen} onClose={toggleOpen}></Modal>
               </div>
 
@@ -45,13 +77,24 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 project-list">
               <Project />
+              <div className="project-button-div" style={{display: project.length === 0 && "none"}}>
+                <Fab
+                  size="small"
+                  color="primary"
+                  className="project-button"
+                  onClick={() => toggleOpen(true)}
+                >
+                  <AddIcon />
+                </Fab>
+              </div>
             </div>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> to push things down */}
       </div>
+      <Footer />
     </ContextProvider>
   );
 }

@@ -1,5 +1,8 @@
 import React, { useEffect, useContext, useState } from "react";
 import { TaskContext } from "./Context";
+import Fab from "@material-ui/core/Fab";
+import DeleteIcon from "@material-ui/icons/Delete";
+
 
 function Project(props) {
   const { setProject, project, deleteProject } = React.useContext(TaskContext);
@@ -14,8 +17,8 @@ function Project(props) {
       .then((jsonRes) => setProject(jsonRes));
   }, [project, setProject]);
 
-  if (!project){
-      return null;
+  if (!project) {
+    return null;
   }
   return (
     <div>
@@ -24,8 +27,17 @@ function Project(props) {
           <div className="project" key={index}>
             <h1>{projects.title}</h1>
             <p>{projects.content}</p>
-            <button onClick={()=>{deleteProject(project[index]._id);
-            console.log(project[index]._id)}}>Delete</button>
+            <Fab 
+              className="delete-icon"
+              // color='secondary'
+              size="small"
+              onClick={() => {
+                deleteProject(project[index]._id);
+                console.log(project[index]._id);
+              }}
+            >
+              <DeleteIcon/>
+            </Fab>
           </div>
         );
       })}

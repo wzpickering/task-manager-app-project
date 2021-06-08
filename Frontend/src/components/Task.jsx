@@ -20,10 +20,14 @@ function Task(props) {
     <ul>
       {task.map((task, index) => {
         return (
-          <li key={index}>
+          <div className="task" key={index}>
+          <input type="checkbox" onChange={() => handleDelete(task._id)}/>
+
+          <p  >
             <h3>{task.title}</h3>
-            <button onClick={() => handleDelete(task._id)}>Delete</button>
-          </li>
+            {/* <button onClick={() => handleDelete(task._id)}>Delete</button> */}
+          </p>
+          </div>
         );
       })}
     </ul> //props.text

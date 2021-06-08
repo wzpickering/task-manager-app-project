@@ -1,15 +1,23 @@
 /* Body */
 
-/* * {
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-} */
+}
+html {
+  height: 100%;
+}
 body {
   background-color: #eaeaea;
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum.png");
   padding-bottom: 60px;
   padding: 0;
   margin: 0;
+  min-height: 100%;
+}
+#root {
+  min-height: 100%;
 }
 
 #wrapper {
@@ -29,7 +37,7 @@ header {
 
 header h1 {
   position: relative;
-  bottom: 85px;
+  bottom: 75px;
   color: azure;
   text-align: center;
   font-family: "Catamaran", sans-serif;
@@ -39,13 +47,15 @@ header h1 {
 .main-content {
   padding: 10px;
   padding-bottom: 60px;
+  min-height: 100%;
 }
 
 /* Task Form */
 .task-form {
   border: solid #08d9d6;
+  background-color: #d7e9f5;;
   text-align: center;
-  width: 60%;
+  width: 70%;
   border-radius: 20px;
   margin: auto;
 }
@@ -53,21 +63,97 @@ header h1 {
   margin-bottom: 20px;
 }
 
-li {
+.task-form  p {
   position: relative;
-  left: 40px;
+  top: 14px;
   width: 85%;
   text-align: left;
   word-wrap: break-word;
   font-family: "Biryani", sans-serif;
+  font-size: 1.3rem;
+  display: inline-block
+}
+.task-form h1{
+  position: relative;
+  top: 6px;
+  font-size: 2rem;
+  font-family: "catamaran";
+  font-weight: bold;
+}
+.task-form h3{
+  font-size: 1.1rem;
+}
+.task{
+  display: flex;
+  align-items: center;
 }
 h3 {
   font-size: 1rem;
 }
+input:checked+p{
+  text-decoration: line-through;
+  text-decoration-color: rebeccapurple;
+}
+input[type="checkbox"] {
+  margin: 20px;
+}
+.mb-3{
+  position: relative;
+  left: 5%;
+  width: 90%;
+}
+/* Modal */
+.modal-title{
+  width: 100%;
+  margin-bottom: 10px;
+}
+.modal-content{
+  height: 150px;
+}
+.btn-group{
+position: absolute;
+left: 59%;
+}
 
 /* Project */
+.project-button{
+  width: 100%;
+}
+.project-button-div{
+text-align: center;
+margin: auto;
+}
+.project h1{
+  position: relative;
+  top: 6px;
+  font-size: 2rem;
+  font-family: "catamaran";
+  text-align: center;
+  font-weight: bold;
+}
+.project p {
+  position: relative;
+  left: 5%;
+  width: 85%;
+  text-align: left;
+  word-wrap: break-word;
+  font-family: "Biryani", sans-serif;
+  font-size: 1.1rem;
+}
 .project {
   border: solid purple;
+  background-color: #f9ebff;
+  width: 70%;
+  border-radius: 20px;
+  margin: 0 auto 20px;
+
+}
+
+.delete-icon{
+  position: absolute;
+  left: 300px;
+  bottom: 10px;
+  /* background-color: #FBC02D; */
 }
 
 /* Footer */
@@ -82,4 +168,9 @@ footer {
   font-family: "Biryani", sans-serif;
   font-size: 0.8rem;
   height: 40px;
+}
+footer p {
+  position:relative;
+  top: 10px;
+  font-family: "biryani";
 }

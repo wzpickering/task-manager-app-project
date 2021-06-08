@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 
 export const TaskContext = React.createContext();
-
+    
 const ContextProvider = (props)=>{
     const [task, setTask] = React.useState([ 
         {
@@ -51,9 +51,3 @@ const ContextProvider = (props)=>{
     )
 }
 export default ContextProvider;
-
-//   project.forEach((ele)=>{
-        //       if (ele.id === id){
-        //           project.delete(ele.index)
-        //       }
-        //   })
