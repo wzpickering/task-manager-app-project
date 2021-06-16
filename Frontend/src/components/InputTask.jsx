@@ -1,25 +1,25 @@
 import React, { useState } from "react";
-import axios from "axios"; 
-import {TaskContext} from "./Context"
+import axios from "axios";
+import { TaskContext } from "./Context";
 
 function InputTask(props) {
-const {setTask, task} = React.useContext(TaskContext);
-const [input, setInput] = useState("");
+  const { setTask, task } = React.useContext(TaskContext);
+  const [input, setInput] = useState("");
 
   function handleChange(e) {
     setInput(e.target.value);
   }
 
-  function handleClick(e){
-    e.preventDefault();
-    // props.onAdd(input);
+  function handleClick(e) {
     const newTask = {
-      title: input
+      title: input,
+    };
+    axios.post("http://localhost:3001", newTask);
+    console.log(task);
+    setInput("");
   }
-  axios.post("http://localhost:3001", newTask); 
-  setTask([newTask, ...task]);//cs log
-  setInput("");
-  }
+
+  // setTask([...task, newTask]);
 
   return (
     <div className="input-group mb-3">
@@ -32,10 +32,7 @@ const [input, setInput] = useState("");
         value={input}
       />
       <div className="input-group-append">
-        <button
-          className="btn btn-outline-secondary"
-          onClick={handleClick}
-        >
+        <button className="btn btn-outline-secondary" onClick={handleClick}>
           Add Task
         </button>
       </div>
@@ -44,7 +41,6 @@ const [input, setInput] = useState("");
 }
 
 export default InputTask;
-
 
 // //() => {
 //   props.onAdd(input);

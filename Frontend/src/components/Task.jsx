@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { TaskContext } from "./Context";
+import axios from "axios"
 
-function Task(props) {
+function Task(url) {
   const { setTask, task, handleDelete } = React.useContext(TaskContext);
+
 
   useEffect(() => {
     fetch("http://localhost:3001")
@@ -11,27 +13,27 @@ function Task(props) {
           return res.json();
         }
       })
-      .then((jsonRes) => setTask(jsonRes));
-  }, [task, setTask]);
+      .then((jsonRes) => setTask(jsonRes))
+      .catch(err => console.log(err))
+  }, [task]); //task,setTask
 
-  //onClick={()=>{props.onDelete(props.id)}}
 
   return (
     <ul>
       {task.map((task, index) => {
         return (
           <div className="task" key={index}>
-          <input type="checkbox" onChange={() => handleDelete(task._id)}/>
-
-          <p  >
-            <h3>{task.title}</h3>
-            {/* <button onClick={() => handleDelete(task._id)}>Delete</button> */}
-          </p>
+            <button className="task-button" onClick={() => handleDelete(task._id)}></button>
+              <h3>{task.title}</h3>            
           </div>
         );
       })}
-    </ul> //props.text
+    </ul> 
   );
+  
 }
 
+            {/* <input type="checkbox" onClick={() => handleDelete(task._id)}  /> */}
+
 export default Task;
+

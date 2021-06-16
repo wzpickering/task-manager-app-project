@@ -26,7 +26,7 @@ const ContextProvider = (props)=>{
             }
           }) 
           axios.delete("http://localhost:3001/delete", {data:{id}})
-          setTask(newArray);
+        //   setTask(newArray);
       }
       
       const deleteProject=(id)=>{
@@ -41,7 +41,7 @@ const ContextProvider = (props)=>{
                 }
             })
             axios.delete("http://localhost:3001/project/delete", {data:{id}})
-            setProject(newArray);
+            // setProject(newArray);
       }
 
     return (

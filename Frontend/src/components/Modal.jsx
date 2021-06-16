@@ -49,7 +49,7 @@ export default function Modal({ open, children, onClose }) {
         },
       }
     ); //converts object to json
-    setProject([newProject, ...project]);
+    setProject([...project, newProject]);
     console.log(project);
     onClose(false);
     setTitle("");

@@ -5,6 +5,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+body 
 html {
   height: 100%;
 }
@@ -58,6 +59,7 @@ header h1 {
   width: 70%;
   border-radius: 20px;
   margin: auto;
+  margin-bottom: 10px;
 }
 .task-form input {
   margin-bottom: 20px;
@@ -82,6 +84,11 @@ header h1 {
 }
 .task-form h3{
   font-size: 1.1rem;
+  font-family: "Biryani", sans-serif;
+  text-align: left;
+  word-wrap: break-word;
+  width: 80%;
+
 }
 .task{
   display: flex;
@@ -102,6 +109,20 @@ input[type="checkbox"] {
   left: 5%;
   width: 90%;
 }
+.task-button{
+  /* display:block; */
+  position: relative;
+  bottom: 6px;
+  margin: 20px 15px 20px 20px;
+width: 15px;
+height: 15px;
+background-color: rgb(243, 77, 77);
+border-radius: 50%;
+color: whitesmoke;
+border-color: whitesmoke;
+line-height: 0;
+}
+
 /* Modal */
 .modal-title{
   width: 100%;

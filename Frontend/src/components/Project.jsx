@@ -14,8 +14,9 @@ function Project(props) {
           return res.json();
         }
       })
-      .then((jsonRes) => setProject(jsonRes));
-  }, [project, setProject]);
+      .then((jsonRes) => setProject(jsonRes))
+      .catch(err => console.log(err))
+  }, [project]);
 
   if (!project) {
     return null;
@@ -34,6 +35,7 @@ function Project(props) {
               onClick={() => {
                 deleteProject(project[index]._id);
                 console.log(project[index]._id);
+                // setProject((prev)=> [...prev])
               }}
             >
               <DeleteIcon/>

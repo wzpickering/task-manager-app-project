@@ -12,6 +12,8 @@ import AddIcon from "@material-ui/icons/Add";
 function App() {
   const { setProject, project } = React.useContext(TaskContext);
   const [isOpen, toggleOpen] = useState(false);
+  const [hasProjects, setHasProjects]= useState({display: "none",})
+
 
   useEffect(() => {
     fetch("http://localhost:3001/project")
@@ -20,14 +22,9 @@ function App() {
           return res.json();
         }
       })
-      .then((jsonRes) => setProject(jsonRes));
-  }, [project, setProject]);
-
-  // if (!project){
-  //     return null;
-  // }
-
-  // console.log(project.length)
+      .then((jsonRes) => setProject(jsonRes))
+      .catch(err => console.log(err))
+  }, [project]);
 
   const displayStyle = {
     display: "none",
