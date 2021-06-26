@@ -20,6 +20,13 @@ mongoose.connect(
 app.use("/", require("./routes/taskRoute"));
 app.use("/project", require("./routes/projectRoute")); //we'll see if we need this
 
+if(process.env.Node_ENV ==='production'){
+  app.use(express.static('Frontend/build'))
+  app.get("*", (req, res)=>{
+    res.sendFile(path.resolve(__dirname, 'Frontend', 'build', 'index.html'))
+  })
+}
+
 app.listen(3001, () => {
   console.log("successfully connected to port 3001");
 });

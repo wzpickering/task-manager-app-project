@@ -14,7 +14,12 @@ function InputTask(props) {
     const newTask = {
       title: input,
     };
-    axios.post("http://localhost:3001", newTask);
+    axios.post("http://localhost:3001", newTask)
+      .then((res) => {
+        const createdTask = res.data;
+        console.log(createdTask)
+        setTask(task => [...task, createdTask])
+      });
     console.log(task);
     setInput("");
   }

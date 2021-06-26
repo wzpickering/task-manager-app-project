@@ -26,7 +26,14 @@ const ContextProvider = (props)=>{
             }
           }) 
           axios.delete("http://localhost:3001/delete", {data:{id}})
-        //   setTask(newArray);
+            .then((res) => {
+                console.log('SUCCESS', newArray)
+                setTask(newArray)
+            })
+            .catch((err) => {
+                console.error("Couldn't delete object")
+            })
+          setTask(newArray);
       }
       
       const deleteProject=(id)=>{
@@ -41,7 +48,8 @@ const ContextProvider = (props)=>{
                 }
             })
             axios.delete("http://localhost:3001/project/delete", {data:{id}})
-            // setProject(newArray);
+            setProject(newArray);
+            // console.log(Object.keys(project), "project object")
       }
 
     return (

@@ -9,6 +9,7 @@ router.route("/").post((req, res) => {
     title,
   });
   newTask.save();
+  res.json(newTask);
 });
 router.route("/").get((req, res) => {
   Task.find().then((foundTasks) => {

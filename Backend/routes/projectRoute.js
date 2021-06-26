@@ -14,9 +14,9 @@ router
       content,
     });
     newProject.save();
-    res.status(201).json({
+    res.status(201).json(
       newProject,
-    });
+    );
   })
   .get((req, res) => {
     Project.find().then((foundProjects) => {

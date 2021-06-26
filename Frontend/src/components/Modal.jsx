@@ -40,7 +40,7 @@ export default function Modal({ open, children, onClose }) {
       title,
       content,
     };
-    await axios.post(
+    const createdProject = await axios.post(
       "http://localhost:3001/project",
       JSON.stringify(newProject),
       {
@@ -48,8 +48,8 @@ export default function Modal({ open, children, onClose }) {
           "Content-Type": "application/json",
         },
       }
-    ); //converts object to json
-    setProject([...project, newProject]);
+    ).then(res => res.data); //converts object to json
+    setProject([...project, createdProject]);
     console.log(project);
     onClose(false);
     setTitle("");
@@ -83,7 +83,7 @@ export default function Modal({ open, children, onClose }) {
             maxLength="300"
           />
           <br></br>
-          <div class="btn-group" role="group" aria-label="Basic example">
+          <div className="btn-group" role="group" aria-label="Basic example">
           <button type="submit" className="btn btn-primary" onClick={() => {}}>
             Add
           </button>

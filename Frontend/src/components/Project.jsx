@@ -16,7 +16,7 @@ function Project(props) {
       })
       .then((jsonRes) => setProject(jsonRes))
       .catch(err => console.log(err))
-  }, [project]);
+  }, []);
 
   if (!project) {
     return null;

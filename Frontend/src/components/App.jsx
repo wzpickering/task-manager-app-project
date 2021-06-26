@@ -10,10 +10,19 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 
 function App() {
-  const { setProject, project } = React.useContext(TaskContext);
-  const [isOpen, toggleOpen] = useState(false);
-  const [hasProjects, setHasProjects]= useState({display: "none",})
 
+  return (
+    <ContextProvider>
+      <AppInner />
+    </ContextProvider>
+  );
+}
+
+export default App;
+
+const AppInner = () => {
+  const { project, setProject } = React.useContext(TaskContext);
+  const [isOpen, toggleOpen] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:3001/project")
@@ -23,8 +32,8 @@ function App() {
         }
       })
       .then((jsonRes) => setProject(jsonRes))
-      .catch(err => console.log(err))
-  }, [project]);
+      .catch((err) => console.log(err));
+  }, []);
 
   const displayStyle = {
     display: "none",
@@ -36,67 +45,65 @@ function App() {
   };
 
   return (
-    <ContextProvider>
-      <div id="wrapper">
-        <Header />
-        <div
-          className="project-button-div"
-          style={{ display: project.length > 0 && "none" }}
+    <div id="wrapper">
+      <Header />
+      <div
+        className="project-button-div"
+        style={{ display: project.length > 0 && "none" }}
+      >
+        <Fab
+          variant="extended"
+          color="primary"
+          className="project-button"
+          onClick={() => toggleOpen(true)}
         >
-          <Fab
-            variant="extended"
-            color="primary"
-            className="project-button"
-            onClick={() => toggleOpen(true)}
-          >
-            Add Project
-          </Fab>
-        </div>
-        <div className="container main-content">
-          <div className={project.length !== 0?"row": null}>
-            <div className={project.length !== 0 ?"col-md-6": null}>
-              <div
-                style={BUTTON_WRAPPER_STYLES}
-                onClick={() => console.log("clicked")}
-              >
-                {/* dispite Modal being rendered seperately, it can pass function up to parent */}
+          Add Project
+        </Fab>
+      </div>
+      <div className="container main-content">
+        <div className={project.length > 0 ? "row" : null}>
+          <div className={project.length > 0 ? "col-md-6" : null}>
+            <div
+              style={BUTTON_WRAPPER_STYLES}
+              onClick={() => console.log("clicked")}
+            >
+              {/* dispite Modal being rendered seperately, it can pass function up to parent */}
 
-                <Modal open={isOpen} onClose={toggleOpen}></Modal>
-              </div>
-
-              <div className="task-form">
-                <div>
-                  <h1>Daily Tasks</h1>
-                </div>
-                <InputTask />
-                <div>
-                  <Task />
-                </div>
-              </div>
+              <Modal open={isOpen} onClose={toggleOpen}></Modal>
             </div>
-            <div className="col-md-6 project-list">
-              <Project />
-              <div className="project-button-div" style={{display: project.length === 0 && "none"}}>
-                <Fab
-                  size="small"
-                  color="primary"
-                  className="project-button"
-                  onClick={() => toggleOpen(true)}
-                >
-                  <AddIcon />
-                </Fab>
+
+            <div className="task-form">
+              <div>
+                <h1>Daily Tasks</h1>
+              </div>
+              <InputTask />
+              <div>
+                <Task />
               </div>
             </div>
           </div>
+          <div className="col-md-6 project-list">
+            <Project />
+            <div
+              className="project-button-div"
+              style={{ display: project.length === 0 && "none" }}
+            >
+              <Fab
+                size="small"
+                color="primary"
+                className="project-button"
+                onClick={() => toggleOpen(true)}
+              >
+                <AddIcon />
+              </Fab>
+            </div>
+          </div>
         </div>
-        <Footer />
       </div>
-      
-    </ContextProvider>
+      <Footer />
+    </div>
   );
-}
-
-export default App;
+};
 
 // <ul>
 //     {tasks.map((task, index) => {

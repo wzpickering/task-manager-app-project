@@ -14,8 +14,8 @@ function Task(url) {
         }
       })
       .then((jsonRes) => setTask(jsonRes))
-      .catch(err => console.log(err))
-  }, [task]); //task,setTask
+      .catch(err => console.log(err));
+  }, []); //task,setTask
 
 
   return (
