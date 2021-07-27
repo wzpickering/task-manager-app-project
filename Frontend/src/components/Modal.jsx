@@ -41,7 +41,7 @@ export default function Modal({ open, children, onClose }) {
       content,
     };
     const createdProject = await axios.post(
-      "http://localhost:3001/project",
+      `${process.env.SERVER_DOMAIN}/project`,
       JSON.stringify(newProject),
       {
         headers: {

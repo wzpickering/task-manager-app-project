@@ -25,7 +25,7 @@ const ContextProvider = (props)=>{
                 console.log("deleted");
             }
           }) 
-          axios.delete("http://localhost:3001/delete", {data:{id}})
+          axios.delete(`${process.env.SERVER_DOMAIN}/delete`, {data:{id}})
             .then((res) => {
                 console.log('SUCCESS', newArray)
                 setTask(newArray)
@@ -47,7 +47,7 @@ const ContextProvider = (props)=>{
                     console.log( "deleted");
                 }
             })
-            axios.delete("http://localhost:3001/project/delete", {data:{id}})
+            axios.delete("/project/delete", {data:{id}})
             setProject(newArray);
             // console.log(Object.keys(project), "project object")
       }

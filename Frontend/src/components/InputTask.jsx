@@ -14,7 +14,7 @@ function InputTask(props) {
     const newTask = {
       title: input,
     };
-    axios.post("http://localhost:3001", newTask)
+    axios.post(`${process.env.SERVER_DOMAIN}`, newTask)
       .then((res) => {
         const createdTask = res.data;
         console.log(createdTask)

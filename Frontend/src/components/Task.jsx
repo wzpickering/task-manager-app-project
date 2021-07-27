@@ -4,10 +4,10 @@ import axios from "axios"
 
 function Task(url) {
   const { setTask, task, handleDelete } = React.useContext(TaskContext);
-
+  console.log("PROCESS ENV", process.env)
 
   useEffect(() => {
-    fetch("http://localhost:3001")
+    fetch(`${process.env.SERVER_DOMAIN}`)
       .then((res) => {
         if (res.ok) {
           return res.json();
