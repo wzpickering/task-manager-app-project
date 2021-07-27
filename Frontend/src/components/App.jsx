@@ -25,7 +25,7 @@ const AppInner = () => {
   const [isOpen, toggleOpen] = useState(false);
 
   useEffect(() => {
-    fetch(`${process.env.SERVER_DOMAIN}/project`)
+    fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/project`)
       .then((res) => {
         if (res.ok) {
           return res.json();

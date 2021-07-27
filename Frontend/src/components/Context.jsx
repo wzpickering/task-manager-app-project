@@ -25,7 +25,7 @@ const ContextProvider = (props)=>{
                 console.log("deleted");
             }
           }) 
-          axios.delete(`${process.env.SERVER_DOMAIN}/delete`, {data:{id}})
+          axios.delete(`${process.env.REACT_APP_SERVER_DOMAIN}/delete`, {data:{id}})
             .then((res) => {
                 console.log('SUCCESS', newArray)
                 setTask(newArray)

@@ -7,7 +7,7 @@ function Task(url) {
   console.log("PROCESS ENV", process.env)
 
   useEffect(() => {
-    fetch(`${process.env.SERVER_DOMAIN}`)
+    fetch(`${process.env.REACT_APP_SERVER_DOMAIN}`)
       .then((res) => {
         if (res.ok) {
           return res.json();

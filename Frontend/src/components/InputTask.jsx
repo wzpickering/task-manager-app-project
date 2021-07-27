@@ -14,7 +14,7 @@ function InputTask(props) {
     const newTask = {
       title: input,
     };
-    axios.post(`${process.env.SERVER_DOMAIN}`, newTask)
+    axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}`, newTask)
       .then((res) => {
         const createdTask = res.data;
         console.log(createdTask)
