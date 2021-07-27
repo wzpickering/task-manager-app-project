@@ -4,7 +4,6 @@ import axios from "axios"
 
 function Task(url) {
   const { setTask, task, handleDelete } = React.useContext(TaskContext);
-  console.log("PROCESS ENV", process.env)
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_SERVER_DOMAIN}`)

@@ -6,7 +6,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 function Project(props) {
   const { setProject, project, deleteProject } = React.useContext(TaskContext);
-  console.log('PROCESS ENV', process.env)
+  
   useEffect(() => {
     fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/project`)
       .then((res) => {
